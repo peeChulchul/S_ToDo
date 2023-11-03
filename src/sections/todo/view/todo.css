@@ -103,7 +103,7 @@
 .todo__li__content {
   font-weight: lighter;
   max-height: 0px;
-  transition: all 0.2s linear;
+  transition: all 0.2s ease-in;
   overflow: hidden;
   opacity: 0;
 }
