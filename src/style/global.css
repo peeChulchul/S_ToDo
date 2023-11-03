@@ -1,9 +1,13 @@
 @import url(./reset.css);
 :root {
   /* colors */
-  --color-black: #000000de;
+  --color-done: orange;
+  --color-working: #87ceeb;
 
+  --color-black: #000000de;
+  --color-white: #ffffff;
   /* spacing */
+  --spacing: 4px;
 
   /* size */
   --container-max-size: 1200px;
@@ -12,4 +16,28 @@
   /* font */
   --font-xl: 3rem;
   --font-lg: 2rem;
+}
+
+/* 공통 */
+.container {
+  max-width: var(--container-max-size);
+  min-width: var(--container-min-size);
+  margin: 0 auto;
+}
+
+.font-xl {
+  font-size: var(--font-xl);
+}
+.font-lg {
+  font-size: var(--font-lg);
+}
+.svg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 4px;
 }

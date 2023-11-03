@@ -1,0 +1,79 @@
+/* 투두 헤더 */
+
+.todo__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: calc(var(--spacing) * 4) 0px;
+}
+
+/* 투두 폼 */
+.todo__form {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-white);
+  align-items: center;
+  height: 80px;
+  margin: calc(var(--spacing) * 4) 0px;
+}
+
+.todo__inputs {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(var(--spacing));
+}
+
+.todo__input {
+  outline: none;
+  border: none;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+}
+
+.todo__button {
+  padding: var(--spacing);
+  height: 100%;
+  min-width: 64px;
+}
+
+/* 투두 리스트 */
+.todo__ul {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing));
+}
+
+.todo__working,
+.todo__done {
+  padding: calc(var(--spacing) * 3);
+}
+.todo__working {
+  color: var(--color-working);
+}
+.todo__done {
+  color: var(--color-done);
+}
+
+.todo__li {
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  gap: var(--spacing);
+}
+
+.todo__checkbox {
+}
+
+.todo__li__title {
+}
+
+.todo__delte {
+  margin-left: auto;
+}
+
+.todo__content_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing));
+}

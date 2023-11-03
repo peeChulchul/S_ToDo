@@ -1,7 +1,0 @@
-.container {
-  max-width: var(--container-max-size);
-  min-width: var(--container-min-size);
-  margin: 0 auto;
-}
-
-/* 헤더 */

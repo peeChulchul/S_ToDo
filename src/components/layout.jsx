@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./layout.module.css";
 export default function Layout({ children }) {
   return (
     <>
@@ -11,11 +10,11 @@ export default function Layout({ children }) {
       </header>
       {/* 메인 */}
       <main>
-        <div className={`${styles.container}`}>{children}</div>
+        <div className="container">{children}</div>
       </main>
       {/* 푸터 */}
       <footer>
-        <div className={`${styles.container}`}>푸터</div>
+        <div className="container"></div>
       </footer>
     </>
   );
