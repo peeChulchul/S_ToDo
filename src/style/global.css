@@ -1,0 +1,15 @@
+@import url(./reset.css);
+:root {
+  /* colors */
+  --color-black: #000000de;
+
+  /* spacing */
+
+  /* size */
+  --container-max-size: 1200px;
+  --container-min-size: 800px;
+
+  /* font */
+  --font-xl: 3rem;
+  --font-lg: 2rem;
+}
