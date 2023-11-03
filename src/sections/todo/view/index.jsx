@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ReactComponent as DarkmodeIcon } from "assets/svgs/darkmode.svg";
 import { ReactComponent as LightmodeIcon } from "assets/svgs/lightmode.svg";
-import styles from "./todo.module.css";
+import "./todo.css";
 import { useLocalStorage } from "utils/useLocalStorage";
 import ToDoItem from "../todo-item";
+import ToDoForm from "../todo-form";
 export default function ToDo() {
   const [inputValue, setInputValue] = useState({ title: "", todo: "" });
   const [localToDos, setLocalToDos] = useLocalStorage("todos", []);
@@ -12,27 +13,12 @@ export default function ToDo() {
   const [workingToDos, setWorkingToDos] = useState([]);
   const [doneToDos, setDoneToDos] = useState([]);
 
-  function onSubmitToDo(e) {
+  function onSubmitToDo(e, ref) {
     e.preventDefault();
     const key = Date.now();
     setLocalToDos((prev) => [...prev, { key, title: inputValue.title, todo: inputValue.todo, state: false }]);
     setInputValue(() => ({ title: "", todo: "" }));
-  }
-
-  function toggleToDoState(key) {
-    setLocalToDos((prev) =>
-      prev.map((todo) => {
-        if (todo.key === key) {
-          return { ...todo, state: !todo.state };
-        } else {
-          return todo;
-        }
-      })
-    );
-  }
-
-  function deleteToDo(key) {
-    setLocalToDos((prev) => prev.filter((todo) => todo.key !== key));
+    ref.current.focus();
   }
 
   useEffect(() => {
@@ -48,15 +34,15 @@ export default function ToDo() {
   }, [localTheme, setLocalTheme, isDarkMode]);
 
   useEffect(() => {
-    setWorkingToDos(localToDos.filter((todos) => !todos.state));
-    setDoneToDos(localToDos.filter((todos) => todos.state));
+    setWorkingToDos(localToDos.filter((todos) => !todos.state)?.sort((a, b) => b.key - a.key));
+    setDoneToDos(localToDos.filter((todos) => todos.state)?.sort((a, b) => b.key - a.key));
   }, [localToDos, setLocalToDos]);
 
   return (
     <>
       {/* todo헤더 */}
       <header>
-        <div className={`${styles.todo__header}`}>
+        <div className={`todo__header`}>
           <h1 className="font-xl">TODO</h1>
           <button
             onClick={() => setLocalTheme((prev) => (prev === "dark" ? "light" : "dark"))}
@@ -67,44 +53,18 @@ export default function ToDo() {
         </div>
 
         {/* todo헤더__toDo인풋 */}
-        <form onSubmit={onSubmitToDo} className={`${styles.todo__form} box`}>
-          <div className={`${styles.todo__inputs} `}>
-            <input
-              onChange={(e) => setInputValue((prev) => ({ title: e.target.value, todo: prev.todo }))}
-              value={inputValue.title}
-              required
-              placeholder="제목을 입력해주세요"
-              className={`${styles.todo__input} `}
-            />
-            <hr style={{ margin: "0px" }} />
-            <input
-              onChange={(e) => setInputValue((prev) => ({ title: prev.title, todo: e.target.value }))}
-              value={inputValue.todo}
-              required
-              placeholder="내용을 입력해주세요"
-              className={`${styles.todo__input} `}
-            />
-          </div>
-          <button className={`${styles.todo__button}`}>Add</button>
-        </form>
+        <ToDoForm onSubmitFn={onSubmitToDo} inputValue={inputValue} setInputValue={setInputValue} btnValue={"Add"} />
       </header>
 
       <main>
         {/* Working박스 */}
         {workingToDos.length > 0 && (
-          <section className={`${styles.todo__category}`}>
-            <ul className={`${styles.todo__ul}`}>
-              <h1 className={`box ${styles.category__title} ${styles.title_working} font-lg`}>Working..</h1>
+          <section className={`todo__category`}>
+            <ul className={`todo__ul`}>
+              <h1 className={`box category__title title_working font-lg`}>Working..</h1>
 
-              {workingToDos.map(({ state, key, todo, title }) => (
-                <ToDoItem
-                  checked={state}
-                  deleteToDo={() => deleteToDo(key)}
-                  toggleToDoState={() => toggleToDoState(key)}
-                  key={key}
-                  title={title}
-                  todo={todo}
-                />
+              {workingToDos.map(({ ...todoData }) => (
+                <ToDoItem key={todoData.key} todoData={todoData} setLocalToDos={setLocalToDos} />
               ))}
             </ul>
           </section>
@@ -112,18 +72,11 @@ export default function ToDo() {
 
         {/* Done박스 */}
         {doneToDos.length > 0 && (
-          <section className={`${styles.todo__category}`}>
-            <ul className={`${styles.todo__ul}`}>
-              <h1 className={`box ${styles.category__title} ${styles.title_done} font-lg`}>Done..</h1>
-              {doneToDos.map(({ state, key, todo, title }) => (
-                <ToDoItem
-                  checked={state}
-                  deleteToDo={() => deleteToDo(key)}
-                  toggleToDoState={() => toggleToDoState(key)}
-                  key={key}
-                  title={title}
-                  todo={todo}
-                />
+          <section className={`todo__category`}>
+            <ul className={`todo__ul`}>
+              <h1 className={`box category__title title_done font-lg`}>Done..</h1>
+              {doneToDos.map(({ ...todoData }) => (
+                <ToDoItem key={todoData.key} todoData={todoData} setLocalToDos={setLocalToDos} />
               ))}
             </ul>
           </section>

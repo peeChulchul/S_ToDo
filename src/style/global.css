@@ -3,15 +3,14 @@
   /* colors */
   --color-bg: var(--color-white);
   --color-primary: var(--color-light-blue);
-  /* --color-primary-variant: var(--color-blue); */
   --color-accent: var(--color-orange);
-  /* --color-accent-variant: var(--color-purple); */
   --color-text: var(--color-black);
 
   --color-orange: orange;
   --color-light-blue: #2bb4ea;
   --color-black: #000000de;
   --color-white: #ffffff;
+
   /* spacing */
   --spacing: 4px;
 
@@ -24,14 +23,15 @@
   --font-lg: 2rem;
   --font-md: 1.25rem;
 }
-/* 공통 */
 
+/* 다크모드 */
 :root.dark {
   /* colors */
   --color-bg: var(--color-black);
   --color-text: var(--color-white);
 }
 
+/* 공통 */
 body {
   background-color: var(--color-bg);
 }
@@ -65,6 +65,10 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.dark .box {
+  box-shadow: rgba(180, 175, 175, 0.24) 0px 3px 8px;
 }
 
 .box {

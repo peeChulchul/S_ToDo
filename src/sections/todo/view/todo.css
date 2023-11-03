@@ -9,11 +9,11 @@
 
 /* 투두 폼 */
 .todo__form {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  margin: calc(var(--spacing) * 4) 0px;
 }
 
 .todo__inputs {
@@ -21,15 +21,18 @@
   flex: 1;
   flex-direction: column;
   gap: calc(var(--spacing));
-  padding: 0px calc(var(--spacing) * 2);
+  padding: 0px calc(var(--spacing) * 4);
 }
 
 .todo__input {
   background-color: transparent;
-
   outline: none;
   border: none;
   padding: calc(var(--spacing) * 2) 0px;
+}
+
+.todo__input-title {
+  font-size: 1.1rem;
 }
 
 .todo__button {
@@ -69,9 +72,8 @@
   min-height: 45px;
   display: flex;
   align-items: center;
-  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3);
-  gap: var(--spacing);
-  transition: all 1s linear;
+  padding: 0 calc(var(--spacing) * 3);
+  gap: calc(var(--spacing) * 3);
 }
 .todo__li.todo_checked {
   text-decoration: line-through;
@@ -82,13 +84,37 @@
   margin: 0px;
   cursor: pointer;
 }
+.todo__content_wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  padding: calc(var(--spacing) * 3) 0px;
+  overflow: hidden;
+}
 
 .todo__li__title {
   font-weight: 600;
   font-size: 1.2rem;
+  padding: var(--spacing) 0px;
 }
-.todo__li__todo {
+.todo__li__content {
   font-weight: lighter;
+  max-height: 0px;
+  transition: all 0.2s linear;
+  overflow: hidden;
+  opacity: 0;
+}
+.todo__li__content.open {
+  max-height: 300px;
+  padding: var(--spacing) 0px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 2);
+  opacity: 1;
 }
 
 .todo__btns {
@@ -111,13 +137,4 @@
 }
 .todo__delte:hover {
   fill: var(--color-accent);
-}
-
-.todo__content_wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing) * 2);
-  width: 100%;
-  cursor: pointer;
 }
