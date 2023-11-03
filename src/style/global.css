@@ -1,9 +1,15 @@
 @import url(./reset.css);
 :root {
   /* colors */
-  --color-done: orange;
-  --color-working: #87ceeb;
+  --color-bg: var(--color-white);
+  --color-primary: var(--color-light-blue);
+  /* --color-primary-variant: var(--color-blue); */
+  --color-accent: var(--color-orange);
+  /* --color-accent-variant: var(--color-purple); */
+  --color-text: var(--color-black);
 
+  --color-orange: orange;
+  --color-light-blue: #2bb4ea;
   --color-black: #000000de;
   --color-white: #ffffff;
   /* spacing */
@@ -16,9 +22,30 @@
   /* font */
   --font-xl: 3rem;
   --font-lg: 2rem;
+  --font-md: 1.25rem;
+}
+/* 공통 */
+
+:root.dark {
+  /* colors */
+  --color-bg: var(--color-black);
+  --color-text: var(--color-white);
 }
 
-/* 공통 */
+body {
+  background-color: var(--color-bg);
+}
+hr {
+  margin: 0px;
+  border-color: var(--color-bg);
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--color-text);
+}
+
+/* 자주사용 */
 .container {
   max-width: var(--container-max-size);
   min-width: var(--container-min-size);
@@ -27,10 +54,13 @@
 
 .font-xl {
   font-size: var(--font-xl);
+  font-weight: bold;
 }
 .font-lg {
   font-size: var(--font-lg);
+  font-weight: bold;
 }
+
 .svg-container {
   display: flex;
   align-items: center;

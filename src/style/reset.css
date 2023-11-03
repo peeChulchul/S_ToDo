@@ -127,7 +127,5 @@ button {
   background-color: transparent;
   border: none;
   padding: 0px;
-}
-* {
-  box-sizing: border-box;
+  cursor: pointer;
 }

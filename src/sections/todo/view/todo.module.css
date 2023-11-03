@@ -11,7 +11,6 @@
 .todo__form {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-white);
   align-items: center;
   height: 80px;
   margin: calc(var(--spacing) * 4) 0px;
@@ -22,58 +21,103 @@
   flex: 1;
   flex-direction: column;
   gap: calc(var(--spacing));
+  padding: 0px calc(var(--spacing) * 2);
 }
 
 .todo__input {
+  background-color: transparent;
+
   outline: none;
   border: none;
-  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  padding: calc(var(--spacing) * 2) 0px;
 }
 
 .todo__button {
   padding: var(--spacing);
   height: 100%;
   min-width: 64px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+.todo__button:hover {
+  color: var(--color-accent);
 }
 
 /* 투두 리스트 */
+.todo__category {
+  margin: calc(var(--spacing) * 4) 0;
+}
+
 .todo__ul {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing));
 }
 
-.todo__working,
-.todo__done {
+.category__title {
   padding: calc(var(--spacing) * 3);
 }
-.todo__working {
-  color: var(--color-working);
+
+.title_working {
+  color: var(--color-primary);
 }
-.todo__done {
-  color: var(--color-done);
+.title_done {
+  color: var(--color-accent);
 }
 
 .todo__li {
   min-height: 45px;
   display: flex;
   align-items: center;
-  padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 3);
   gap: var(--spacing);
+  transition: all 1s linear;
+}
+.todo__li.todo_checked {
+  text-decoration: line-through;
 }
 
 .todo__checkbox {
+  padding: var(--spacing);
+  margin: 0px;
+  cursor: pointer;
 }
 
 .todo__li__title {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.todo__li__todo {
+  font-weight: lighter;
+}
+
+.todo__btns {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing);
+}
+.todo__change {
+  cursor: pointer;
+  fill: var(--color-primary);
+}
+.todo__change:hover {
+  fill: var(--color-accent);
 }
 
 .todo__delte {
-  margin-left: auto;
+  cursor: pointer;
+  fill: var(--color-primary);
+}
+.todo__delte:hover {
+  fill: var(--color-accent);
 }
 
 .todo__content_wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing));
+  gap: calc(var(--spacing) * 2);
+  width: 100%;
+  cursor: pointer;
 }
